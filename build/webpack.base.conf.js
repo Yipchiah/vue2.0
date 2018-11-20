@@ -55,12 +55,6 @@ module.exports = {
         },
       },
       {
-              test: /\.css$/,
-              include: [resolve('src')],
-              exclude: /node_modules\/(?!(autotrack|dom-utils))|vendor\.dll\.css/,
-              use: ['style-loader', 'css-loader', 'autoprefixer-loader']
-      },
-      {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         options: {

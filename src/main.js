@@ -11,6 +11,11 @@ if ('addEventListener' in document) {
   }, false);
 }
 
+import './plugins/Toast/toast.css'; //自己写的插件css样式
+import(/* webpackChunkName: "Toast" */ './plugins/Toast/toast').then((_)=>{  //引入插件
+  Vue.use(_)
+})
+
 Vue.config.productionTip = false
 import 'babel-polyfill'
 import Es6Promise from 'es6-promise'
