@@ -1,9 +1,9 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import App from './App'
-import router from './router'
+import router from './router'      //router
 import FastClick from 'fastclick'
+import store from './store/store'  //vuex
 
 if ('addEventListener' in document) {
   document.addEventListener('DOMContentLoaded', function() {
@@ -17,6 +17,7 @@ import(/* webpackChunkName: "Toast" */ './plugins/Toast/toast').then((_)=>{  //å
 })
 
 Vue.config.productionTip = false
+
 import 'babel-polyfill'
 import Es6Promise from 'es6-promise'
 require('es6-promise').polyfill()
@@ -26,6 +27,9 @@ Es6Promise.polyfill()
 new Vue({
   el: '#app',
   router,
-  components: { App },
+  store,
+  components: {
+  'App':() => import('./App')
+  },
   template: '<App/>'
 })
