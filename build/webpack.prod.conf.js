@@ -10,7 +10,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
-const bundleConfig = require("./dll/bundle-config.json")
+const bundleConfig = require("../static/dll/bundle-config.json")
 const env = require('../config/prod.env')
 
 const webpackConfig = merge(baseWebpackConfig, {
