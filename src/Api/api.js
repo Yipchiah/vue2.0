@@ -164,7 +164,7 @@ let ApiList={
   }) {
     return axiosApi(devUrl + 'XX/XX', {
       data: {   //php接口为data  java为params
-        'n': 'UserLogin',
+        'n': 'XX',
         "s": "",
         "q": {
           name,
