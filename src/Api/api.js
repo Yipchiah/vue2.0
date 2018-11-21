@@ -2,9 +2,10 @@ import axios from 'axios';
 import store from '../store/store.js'
 import router from '../router'
 import Vue from 'vue'
-let res = {};
-res.SESSION = process.env.NODE_ENV == 'development' ? (localStorage.getItem('sessionId') ? localStorage.getItem('sessionId') : null) : (localStorage.getItem('sessionId') ? localStorage.getItem('sessionId') : null)
-res.appType = {
+
+let SESSION=localStorage.getItem('sessionId') ? localStorage.getItem('sessionId') : null;
+
+let appType = {
 	type: function() {
 		var u = navigator.userAgent;
 		return { //移动终端浏览器版本信息
@@ -21,43 +22,23 @@ res.appType = {
 
 }
 
-
-
-
 const key = '';
+
 let devUrl = "/api/";
-//Vue.prototype.$imgUrl = 'https://java1.d.aiitec.org';
-//Vue.prototype.$imgUrl = 'https://java1.t.aiitec.org';
-if(window.location.host == "h5.crocodilesecret.d.aiitec.org") {
-	//	let url = 'http://' + window.location.host;
-	Vue.prototype.$shareUrl = 'https://h5.gitlab.aiitec.org';
-	devUrl = "http://gitlab.aiitec.org/java/GaitQianhe/";
-	//Vue.prototype.$imgUrl = url;
-} else if(window.location.host == "h5.crocodilesecret.t.aiitec.org") {
-	devUrl = "http://gitlab.aiitec.org/java/GaitQianhe/";
-	Vue.prototype.$shareUrl = 'https://gitlab.aiitec.org';
-} else if(window.location.host == "meililingba-h5.b.aiitec.net") {
-	Vue.prototype.$shareUrl = "https://meililingba-h5.b.aiitec.net"
-	devUrl = "https://api.meililingba.com/CrocodileSecret/api/"
-} else if(window.location.host == "api.meililingba.com") {
-	Vue.prototype.$shareUrl = "https://api.meililingba.com"
-	devUrl = "https://api.meililingba.com/CrocodileSecret/api/"
-} else if(window.location.host == "d.aiitec.org") {
-	devUrl = "http://java1.d.aiitec.org/GaitQianhe/api/";
 
-}else if(window.location.host == "t.aiitec.org") {
-	devUrl = "http://java1.d.aiitec.org/GaitQianhe/api/";
-
+if(window.location.host == "xx.xx.com") {
+		let url = 'http://' + window.location.host;
+	Vue.prototype.$shareUrl = 'https://xx.xx.com';
+	Vue.prototype.$imgUrl = url;
+  	devUrl = "https://xx.xx.com"+devUrl;
 }
-res.devUrl = devUrl
 
-res.getSession = function() {
+
+ function getSession(){
 
 	let result = localStorage.getItem('sessionId');
-
-
 	if(result) {
-		res.SESSION = result;
+    SESSION = result;
 
 		return result;
 	}
@@ -122,47 +103,48 @@ axios.interceptors.response.use(response => {
 
 });
 
-res.axiosApi = function(url, option, method = 'post', stopLogin = false) {
+  function axiosApi(url, option, method = 'post', stopLogin = false) {
 	let promise;
 
 	promise = new Promise((resolve, reject) => {
-		if(method == 'post') {
-			option.headers = {
-				'Content-Type': 'multipart/form-data'
-			}
-			if(option.data) {
 
-			} else {
-        // console.log(option.params)
+  		if(method != 'post') {
+  			option.data = {};
+  		}
 
+			if(option.data) {       //php接口
+        option.headers = {
+    			'Content-Type': 'application/json'  //php 接口
+    		}
+
+			} else {              //java接口
+
+        option.headers = {
+  				'Content-Type': 'multipart/form-data' //java 接口
+  			}
 				option.params.m = '123' //m值
 				//   var key="cssH5-8149537095"
-				//
-				//      			console.log(JSON.stringify(option.params));
-				//
-				//
-				//      			option.params.m = md5(key+md5(JSON.stringify(option.params)));
-				//
+				//   option.params.m = md5(key+md5(JSON.stringify(option.params)));
 				let formdata = new FormData();
 				formdata.append('json', JSON.stringify(option.params));
 				option.data = formdata;
 				option.params = null;
 			}
 
-		}
 
-		axios(Object.assign({
+
+    let obj = Object.assign({
 			method,
-			url
-		}, option)).then((response) => {
+			url,
+		}, option)
+
+		axios(obj).then((response) => {
       if(response.data.q.s==1106){
-				store.commit("changeDisaber",false)
 				router.replace({
            name:"Home"
 				})
 
 			}else{
-				store.commit("changeDisaber",true)
 				resolve(response.data)
 			}
 
@@ -174,5 +156,28 @@ res.axiosApi = function(url, option, method = 'post', stopLogin = false) {
 	})
 	return promise;
 }
+let ApiList={
+  UserLogin({
+    name,
+    pwd,
+    code
+  }) {
+    return axiosApi(devUrl + 'XX/XX', {
+      data: {   //php接口为data  java为params
+        'n': 'UserLogin',
+        "s": "",
+        "q": {
+          name,
+          pwd,
+          code
+        }
+      }
 
-export default res;
+    })
+
+  }
+}
+
+
+
+export default ApiList;

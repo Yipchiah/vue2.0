@@ -4,6 +4,7 @@ import Vue from 'vue'
 import router from './router'      //router
 import FastClick from 'fastclick'
 import store from './store/store'  //vuex
+import Api from './Api/api.js'
 
 if ('addEventListener' in document) {
   document.addEventListener('DOMContentLoaded', function() {
@@ -15,6 +16,9 @@ import './plugins/Toast/toast.css'; //自己写的插件css样式
 import(/* webpackChunkName: "Toast" */ './plugins/Toast/toast').then((_)=>{  //引入插件
   Vue.use(_)
 })
+
+Vue.prototype.$Api = Api;
+
 
 Vue.config.productionTip = false
 
