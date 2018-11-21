@@ -96,7 +96,7 @@ module.exports = {
     new webpack.DllReferencePlugin({
       context: __dirname,
       // manifest就是我们第一步中打包出来的json文件
-      manifest: require('./dll/vendor-mainfest.json'),
+      manifest: require('../static/dll/vendor-mainfest.json'),
     })
 
   ]

@@ -85,11 +85,18 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+  computed:{
+    ...mapGetters({
+       avatar: 'getAvatar'
+    })
+  },
+  created(){
+    console.log(this.avatar)
   }
 }
 </script>

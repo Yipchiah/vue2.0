@@ -7,7 +7,7 @@ const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
 const AssetsPlugin = require('assets-webpack-plugin'); // 生成文件名，配合HtmlWebpackPlugin增加打包后dll的缓存
 const webpack = require('webpack')
-const srcPath = path.join(__dirname, './dll');
+const srcPath = path.join(__dirname, '../static/dll');
 const vendors = [
 
   'vue/dist/vue.esm.js',
@@ -65,7 +65,7 @@ const webpackConfig = {
     new webpack.DllPlugin({
       // DllPlugin的name属性需要和libary保持一致
       name: '[name]_library',
-      path: path.join(__dirname, './dll', '[name]-mainfest.json'),
+      path: path.join(__dirname, '../static/dll', '[name]-mainfest.json'),
       // context需要和webpack.config.js保持一致
       context: __dirname,
 
@@ -91,7 +91,7 @@ const webpackConfig = {
     }),
     new AssetsPlugin({
      filename: 'bundle-config.json',
-     path: './build/dll'
+     path: './static/dll'
    })
 
   ]

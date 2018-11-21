@@ -3,8 +3,6 @@ import Vuex from 'vuex'
 import Home from './Home/Home.js'
 import Shop from './Shop/Shop.js'
 Vue.use(Vuex)
-
-
 const store = new Vuex.Store({
 	modules:{
 		Home:Home,
