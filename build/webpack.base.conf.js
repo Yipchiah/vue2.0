@@ -49,6 +49,7 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader?cacheDirectory=true',
         include: [resolve('src'), resolve('test')],
+        exclude:/node_modules/,
         options: {
           presets: [['es2015', {modules: false}]],
           plugins: ['syntax-dynamic-import']
