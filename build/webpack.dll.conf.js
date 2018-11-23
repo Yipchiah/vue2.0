@@ -1,6 +1,5 @@
 process.env.NODE_ENV = 'production'
 const path = require('path');
-const utils = require('./utils')
 const vueLoaderConfig = require('./vue-loader.conf')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
