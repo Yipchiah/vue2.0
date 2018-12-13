@@ -8,14 +8,15 @@
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "build": "node build/build.js",
-    "dll": "webpack --config build/webpack.dll.conf.js"
+    "dll": "webpack --config build/webpack.dll.conf.js",
+    "skeleton": "webpack --config build/webpack.skeleton.conf.js && node skeleton.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
     "es6-promise": "^4.2.5",
     "fastclick": "^1.0.6",
-    "vue": "^2.5.2",
+    "vue": "^2.5.21",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
   },
@@ -54,12 +55,14 @@
     "style-loader": "^0.23.1",
     "url-loader": "^0.5.8",
     "vue-loader": "^13.3.0",
+    "vue-server-renderer": "^2.5.16",
     "vue-style-loader": "^3.0.1",
-    "vue-template-compiler": "^2.5.2",
+    "vue-template-compiler": "^2.5.21",
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.9.1",
     "webpack-merge": "^4.1.0",
+    "webpack-node-externals": "^1.7.2",
     "webpack-parallel-uglify-plugin": "^1.1.0"
   },
   "engines": {
