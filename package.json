@@ -8,8 +8,7 @@
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "build": "node build/build.js && webpack --config build/webpack.skeleton.conf.js && node skeleton.js",
-    "dll": "webpack --config build/webpack.dll.conf.js",
-    "skeleton": "webpack --config build/webpack.skeleton.conf.js && node skeleton.js"
+    "dll": "webpack --config build/webpack.dll.conf.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
