@@ -85,10 +85,22 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import  {RemoveDuplication} from '../tools/tools'
+
 export default {
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      arr:[1,2,3,4,4],
+      arr1:[{
+        name:1
+      },
+      {
+        name:1
+      },{
+        name:2
+      }
+      ]
     }
   },
   computed:{
@@ -97,8 +109,13 @@ export default {
     })
   },
   created(){
-    console.log(this.avatar)
-  }
+    let newArr=new RemoveDuplication(this.arr)
+    console.log(newArr)
+    let newArr1=new RemoveDuplication(this.arr1,"name")
+    console.log(newArr1)
+    
+  },
+  
 }
 </script>
 
