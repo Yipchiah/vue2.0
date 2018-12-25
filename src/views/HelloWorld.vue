@@ -85,7 +85,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import  {RemoveDuplication} from '../tools/tools'
+import  {RemoveDuplication,Reg} from '../tools/tools'
 
 export default {
   data () {
@@ -113,9 +113,14 @@ export default {
     console.log(newArr)
     let newArr1=new RemoveDuplication(this.arr1,"name")
     console.log(newArr1)
-    
+    let newBol=new Reg("13622839513").alipay()
+    console.log(newBol)
+
   },
-  
+  methods:{
+      
+
+  }
 }
 </script>
 
