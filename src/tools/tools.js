@@ -29,63 +29,54 @@ class RemoveDuplication{    //去重
 
 };
 
-class Reg{      //正则
-    constructor(options){
-      this.str=options?options:""
-      
+class NumAcc{  //数字精度
+     constructor(num1,num2){
+    this.num1=num1?num1:0
+    this.num2=num2?num2:0
+
+     }
+    
+     add() {//相加
+        let r1,r2,m;  
+        try{r1=this.num1.toString().split(".")[1].length}catch(e){r1=0}  
+        try{r2=this.num2.toString().split(".")[1].length}catch(e){r2=0}  
+        m=Math.pow(10,Math.max(r1,r2))  
+        return (this.num1*m+this.num2*m)/m  
+        }
+     
+      sub(){ //相减
+        let r1,r2,m;  
+        try{r1=this.num1.toString().split(".")[1].length}catch(e){r1=0}  
+        try{r2=this.num2.toString().split(".")[1].length}catch(e){r2=0}  
+        m=Math.pow(10,Math.max(r1,r2))  
+        return (this.num1*m-this.num2*m)/m  
       }
-      tel(){  // 电话号码
-   let newReg=/^[1][3,4,5,6,7,8,9][0-9]{9}$/;
-   return newReg.test(this.str);
-}
-num(){  //是否为纯数字
-    let newReg=/^[0-9]*$/;
-    return newReg.test(this.str);
-}
+  
+      mul(){ //相乘
+        let m=0,s1=this.num1.toString(),s2=this.num2.toString();   
+        try{m+=s1.split(".")[1].length}catch(e){}   
+        try{m+=s2.split(".")[1].length}catch(e){}   
+        return Number(s1.replace(".",""))*Number(s2.replace(".",""))/Math.pow(10,m)   
 
-specialChar(){  //是否含有特殊字符
+      }
 
-   let regEn = /[`~!@#$%^&*()_+<>?:"{},.\/;'[\]]/im;
-   let regCn = /[·！#￥（——）：；“”‘、，|《。》？、【】[\]]/im;
-   let newBol=null;
-   if(regEn.test(this.str)||regCn.test(this.str)){
-    newBol=true
-   }else{
-    newBol=false
-   }
-return newBol;
-}
+      div(){  //相除
+        let t1=0,t2=0,r1,r2;   
+        try{t1=this.num1.toString().split(".")[1].length}catch(e){}   
+        try{t2=this.num2.toString().split(".")[1].length}catch(e){}   
+            r1=Number(this.num1.toString().replace(".",""))   
+            r2=Number(this.num2.toString().replace(".",""))   
+            return (r1/r2)*pow(10,t2-t1);   
+        
 
-alipay(){  //支付宝
- let newReg=/^(?:\w+\.?)*\w+@(?:\w+\.)+\w+|\d{9,11}$/ 
- return newReg.test(this.str);
-}
 
-cash(){  //金额
-let newReg=/^\d+(\.\d+)?$/;
-return newReg.test(this.str);
+      }
 
-}
 
-email(){  //邮箱
-let newReg=/^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g;
-return newReg.test(this.str);
-}
-
-identityCard(){  //身份证
-let newReg=/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; 
-return newReg.test(this.str);
-}
-
-isChinese(){  //中文
-    let newReg=/^[\\u4e00-\\u9fa5]{0,}$/; 
-    return newReg.test(this.str);
-}
 
 }
 
 
 
 
-
-export  { RemoveDuplication,Reg }
+export  { RemoveDuplication,NumAcc }
