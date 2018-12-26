@@ -99,7 +99,7 @@ class WxMedia{ //多媒体
 						}, false);
 					}
           media[this.cb]()
-          
+          console.log(media,this.cb)
        }
 
 
