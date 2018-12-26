@@ -86,7 +86,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import  {RemoveDuplication,NumAcc,WxMedia} from '../tools/tools'
+import  {RemoveDuplication,NumAcc,WxMedia,ChangeDate} from '../tools/tools'
 import {Reg} from '../tools/reg'
 export default {
   data () {
@@ -111,7 +111,8 @@ export default {
     })
   },
   created(){
-  
+           let time=new ChangeDate(new Date(),"yyyy-MM-dd").init()
+           console.log(time)
   },
   methods:{
       change(){

@@ -99,7 +99,7 @@ class WxMedia{ //多媒体
 						}, false);
 					}
           media[this.cb]()
-          console.log(media,this.cb)
+          
        }
 
 
@@ -107,5 +107,36 @@ class WxMedia{ //多媒体
 }
 
 
+class ChangeDate{  //时间格式化
+       constructor(date,fmt){
+        this.date=date?date:0;
+        this.fmt=fmt?fmt:"";
+          this.o = {
+          "M+": new Date(this.date).getMonth() + 1, //月份 
+          "d+": new Date(this.date).getDate(), //日 
+          "h+": new Date(this.date).getHours(), //小时 
+          "m+": new Date(this.date).getMinutes(), //分 
+          "s+": new Date(this.date).getSeconds(), //秒 
+          "q+": Math.floor((new Date(this.date).getMonth() + 3) / 3), //季度 
+          "S": new Date(this.date).getMilliseconds() //毫秒 
+      };
+      
+      
+       }
+       
+       init(){
+        if (/(y+)/.test(this.fmt)) this.fmt = this.fmt.replace(RegExp.$1, (new Date(this.date).getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in this.o)
+        if (new RegExp("(" + k + ")").test(this.fmt)) this.fmt = this.fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (this.o[k]) : (("00" + this.o[k]).substr(("" + this.o[k]).length)));
+        return this.fmt;
 
-export  { RemoveDuplication,NumAcc,WxMedia }
+       }
+
+ 
+
+}
+
+
+
+
+export  { RemoveDuplication,NumAcc,WxMedia,ChangeDate }
