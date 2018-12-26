@@ -120,8 +120,6 @@ class ChangeDate{  //时间格式化
           "q+": Math.floor((new Date(this.date).getMonth() + 3) / 3), //季度 
           "S": new Date(this.date).getMilliseconds() //毫秒 
       };
-      
-      
        }
        
        init(){
@@ -135,6 +133,11 @@ class ChangeDate{  //时间格式化
  
 
 }
+
+
+
+
+
 
 
 
