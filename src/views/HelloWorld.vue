@@ -80,19 +80,20 @@
         </a>
       </li>
     </ul>
+    <video id="video" style="max-width:100%;" src="https://gaitqianhe-1257295601.file.myqcloud.com/img/201811/14/174342_8018.mp4" @click="change"></video>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import  {RemoveDuplication,NumAcc} from '../tools/tools'
+import  {RemoveDuplication,NumAcc,WxMedia} from '../tools/tools'
 import {Reg} from '../tools/reg'
 export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
       arr:[1,2,3,4,4],
-      arr1:[{
+      arr1:[ {
         name:1
       },
       {
@@ -100,7 +101,8 @@ export default {
       },{
         name:2
       }
-      ]
+      ],
+      flag:false
     }
   },
   computed:{
@@ -112,7 +114,14 @@ export default {
   
   },
   methods:{
-      
+      change(){
+        if(this.flag){
+          new WxMedia("pause","video")
+        }else{
+          new WxMedia("play","video")
+        }
+          this.flag=!this.flag
+      }
 
   }
 }

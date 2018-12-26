@@ -77,6 +77,35 @@ class NumAcc{  //数字精度
 }
 
 
+class WxMedia{ //多媒体
+       constructor(cb,dom){
+          this.dom=dom?dom:null;
+          this.cb=cb?cb:""
+          return this.init()
+          
+       }
+
+       init(){
+          let media=document.getElementById(this.dom);
+          if(window.WeixinJSBridge) {
+						WeixinJSBridge.invoke('getNetworkType', {}, function(e) {
+              media[this.cb]()
+						}, false);
+					} else {
+						document.addEventListener("WeixinJSBridgeReady", function() {
+							WeixinJSBridge.invoke('getNetworkType', {}, function(e) {
+                media[this.cb]()
+							});
+						}, false);
+					}
+          media[this.cb]()
+          
+       }
 
 
-export  { RemoveDuplication,NumAcc }
+
+}
+
+
+
+export  { RemoveDuplication,NumAcc,WxMedia }
