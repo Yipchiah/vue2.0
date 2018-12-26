@@ -80,7 +80,7 @@
         </a>
       </li>
     </ul>
-    <video id="video" style="max-width:100%;" src="https://gaitqianhe-1257295601.file.myqcloud.com/img/201811/14/174342_8018.mp4" @click="change"></video>
+    <video id="video" style="max-width:100%;background:red" src="https://gaitqianhe-1257295601.file.myqcloud.com/img/201811/14/174342_8018.mp4" @click="change"></video>
   </div>
 </template>
 
