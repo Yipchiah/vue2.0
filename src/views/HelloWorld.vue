@@ -86,7 +86,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import  {RemoveDuplication,NumAcc,WxMedia,ChangeDate} from '../tools/tools'
+import  {RemoveDuplication,NumAcc,WxMedia,ChangeDate,Curry} from '../tools/tools'
 import {Reg} from '../tools/reg'
 export default {
   data () {
@@ -113,6 +113,8 @@ export default {
   created(){
            let time=new ChangeDate(new Date(),"yyyy-MM-dd").init()
            console.log(time)
+           let newFun=new Curry().curry(this.getName)
+          newFun("a","b","d")("c")
   },
   methods:{
       change(){
@@ -122,6 +124,9 @@ export default {
           new WxMedia("play","video")
         }
           this.flag=!this.flag
+      },
+      getName(a,b,c,d){
+        console.log([a,b,c,d])
       }
 
   }

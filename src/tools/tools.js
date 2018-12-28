@@ -135,6 +135,29 @@ class ChangeDate{  //时间格式化
 }
 
 
+ class  Curry{   //柯里化函数
+    
+    curry(fn,args){
+     let len=fn.length;
+     let that=this
+     let arg=args?args:[];
+      return function(){
+        let _args=[...arg];
+        for(let i=0;i<arguments.length;i++){
+          let newArg=arguments[i] ;
+          _args.push(newArg)
+        }
+        if(_args.length<len){
+           return that.curry.call(that,fn,_args)
+        }else{     
+          return fn.apply(this,_args)
+        }
+      }
+
+    }
+    
+    
+ }
 
 
 
@@ -142,4 +165,5 @@ class ChangeDate{  //时间格式化
 
 
 
-export  { RemoveDuplication,NumAcc,WxMedia,ChangeDate }
+
+export  { RemoveDuplication,NumAcc,WxMedia,ChangeDate,Curry };
