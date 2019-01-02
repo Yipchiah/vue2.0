@@ -160,10 +160,58 @@ class ChangeDate{  //时间格式化
  }
 
 
+ class  UploadImg{
+      constructor(arr,length,cb){
+        this.arr=arr?arr:[];
+       this.length=length?length:0;
+       this.cb=cb?cb:null;
+       this.newArr=[];
+     
+       return   this.upload(this.arr,this.length)
+      }
+      upload(arr,length){
+          let localId=arr.shift()
+          let that=this;
+          wx.uploadImage({
+              localId: localId,
+              isShowProgressTips: 0,
+              success(res){
+              that.newArr.push(res.serverId);
+              if(length==that.newArr.length){
+                 that.cb(that.newArr)
+              }
+              
+              if (arr.length > 0) {
+                that.upload(arr, length);
+              }
+
+
+              }
+          })
+
+      }
+
+ }
+
+
+ class  newSet{
+       constructor(){
+
+       }
+
+       
+ 
+}
+
+class oldSet{
+  constructor(){
+         
+  }
 
 
 
+}
 
 
 
-export  { RemoveDuplication,NumAcc,WxMedia,ChangeDate,Curry };
+export  { RemoveDuplication,NumAcc,WxMedia,ChangeDate,Curry,UploadImg,newSet,oldSet};

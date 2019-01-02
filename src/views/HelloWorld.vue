@@ -114,7 +114,7 @@ export default {
            let time=new ChangeDate(new Date(),"yyyy-MM-dd").init()
            console.log(time)
            let newFun=new Curry().curry(this.getName)
-          newFun("a","b","d")("c")
+          newFun(2,2,2)(2)
   },
   methods:{
       change(){
@@ -126,7 +126,8 @@ export default {
           this.flag=!this.flag
       },
       getName(a,b,c,d){
-        console.log([a,b,c,d])
+        // console.log([a,b,c,d])
+        console.log(a+b+c+d)
       }
 
   }
