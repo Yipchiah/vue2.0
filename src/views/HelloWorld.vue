@@ -86,7 +86,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import  {RemoveDuplication,NumAcc,WxMedia,ChangeDate,Curry} from '../tools/tools'
+import  {RemoveDuplication,NumAcc,WxMedia,ChangeDate,Curry,deepClone} from '../tools/tools'
 import {Reg} from '../tools/reg'
 export default {
   data () {
@@ -102,6 +102,14 @@ export default {
         name:2
       }
       ],
+      arr2:[
+        {
+          newArr:["1","2"]
+        },
+         {
+          newArr:["3","4"]
+        }
+      ],
       flag:false
     }
   },
@@ -115,6 +123,11 @@ export default {
            console.log(time)
            let newFun=new Curry().curry(this.getName)
           newFun(2,2,2)(2)
+          let newArr=new deepClone(this.arr2)
+          newArr[0].newArr[2]="22"
+          console.log(newArr)
+          console.log(this.arr2)
+          
   },
   methods:{
       change(){

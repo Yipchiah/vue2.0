@@ -212,6 +212,31 @@ class oldSet{
 
 }
 
+class deepClone{          //深度克隆
+     constructor(obj){
+       this.obj=obj?obj:{};
+      if (!this.isObject(this.obj)) {
+        throw new Error('非对象')
+      }
+
+      let isArray = Array.isArray(this.obj)
+      let newObj = isArray ? [...this.obj] : { ...this.obj }
+      let that=this
+      Reflect.ownKeys(newObj).forEach(key => {
+        newObj[key] = that.isObject(that.obj[key]) ? new deepClone(that.obj[key]) : that.obj[key]
+      })
+      return newObj
+     }
+     
+     isObject(o) {
+      return (typeof o === 'object' || typeof o === 'function') && o !== null
+    }
 
 
-export  { RemoveDuplication,NumAcc,WxMedia,ChangeDate,Curry,UploadImg,newSet,oldSet};
+}
+
+
+
+
+
+export  { RemoveDuplication,NumAcc,WxMedia,ChangeDate,Curry,UploadImg,newSet,oldSet,deepClone};
