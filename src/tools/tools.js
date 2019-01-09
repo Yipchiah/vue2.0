@@ -107,7 +107,7 @@ class timestamp{  //时间格式化
     
     curry(fn,args){
      let len=fn.length;
-     let that=this
+     let that=this;
      let arg=args?args:[];
       return function(){
         let _args=[...arg];
