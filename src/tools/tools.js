@@ -5,24 +5,19 @@ class RemoveDuplication{    //去重
           return this.init()?this.init():[];
       }
       init(){
-        let res = [];
         let json = {};
         if(this.options.length==0){
             return [];
         }
-		for(let i = 0; i < this.options.length; i++) {
-		       if(this.key){
-                if(!json[this.options[i][this.key]]) {
-					res.push(this.options[i]);
-					json[this.options[i][this.key]] = 1;
-						}
-               }else{
-                if(!json[this.options[i]]) {
-					res.push(this.options[i]);
-					json[this.options[i]] = 1;
-						}
-               }
-			}
+    let res= this.options.reduce((arr,item)=>{
+      if(this.key){
+        json[item[this.key]]?null:json[item[this.key]]=true && arr.push(item);
+      return arr;
+      }else{
+        json[item]?null:json[item]=true && arr.push(item);
+      return arr;
+      }
+    },[])
 					return res;
 
       }
@@ -77,37 +72,10 @@ class NumAcc{  //数字精度
 }
 
 
-class WxMedia{ //多媒体
-       constructor(cb,dom){
-          this.dom=dom?dom:null;
-          this.cb=cb?cb:""
-          return this.init()
-          
-       }
-
-       init(){
-          let media=document.getElementById(this.dom);
-          if(window.WeixinJSBridge) {
-						WeixinJSBridge.invoke('getNetworkType', {}, function(e) {
-              media[this.cb]()
-						}, false);
-					} else {
-						document.addEventListener("WeixinJSBridgeReady", function() {
-							WeixinJSBridge.invoke('getNetworkType', {}, function(e) {
-                media[this.cb]()
-							});
-						}, false);
-					}
-          media[this.cb]()
-          
-       }
 
 
 
-}
-
-
-class ChangeDate{  //时间格式化
+class timestamp{  //时间格式化
        constructor(date,fmt){
         this.date=date?date:0;
         this.fmt=fmt?fmt:"";
@@ -160,57 +128,8 @@ class ChangeDate{  //时间格式化
  }
 
 
- class  UploadImg{
-      constructor(arr,length,cb){
-        this.arr=arr?arr:[];
-       this.length=length?length:0;
-       this.cb=cb?cb:null;
-       this.newArr=[];
-     
-       return   this.upload(this.arr,this.length)
-      }
-      upload(arr,length){
-          let localId=arr.shift()
-          let that=this;
-          wx.uploadImage({
-              localId: localId,
-              isShowProgressTips: 0,
-              success(res){
-              that.newArr.push(res.serverId);
-              if(length==that.newArr.length){
-                 that.cb(that.newArr)
-              }
-              
-              if (arr.length > 0) {
-                that.upload(arr, length);
-              }
 
 
-              }
-          })
-
-      }
-
- }
-
-
- class  newSet{
-       constructor(){
-
-       }
-
-       
- 
-}
-
-class oldSet{
-  constructor(){
-         
-  }
-
-
-
-}
 
 class deepClone{          //深度克隆
      constructor(obj){
@@ -236,7 +155,20 @@ class deepClone{          //深度克隆
 }
 
 
+class filterObj{
+       constructor({obj,arr,key,value}){
+            this.arr=new deepClone(arr)?new deepClone(arr):[]
+
+       }
+
+
+}
 
 
 
-export  { RemoveDuplication,NumAcc,WxMedia,ChangeDate,Curry,UploadImg,newSet,oldSet,deepClone};
+
+
+
+
+
+export  { RemoveDuplication,NumAcc,timestamp,Curry,deepClone};

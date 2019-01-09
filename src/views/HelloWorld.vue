@@ -81,12 +81,14 @@
       </li>
     </ul>
     <video id="video" style="max-width:100%;background:red" src="https://gaitqianhe-1257295601.file.myqcloud.com/img/201811/14/174342_8018.mp4" @click="change"></video>
+    
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import  {RemoveDuplication,NumAcc,WxMedia,ChangeDate,Curry,deepClone} from '../tools/tools'
+import  {RemoveDuplication,NumAcc,timestamp,Curry,deepClone} from '../tools/tools'
+import {WxMedia} from '../tools/wx'
 import {Reg} from '../tools/reg'
 export default {
   data () {
@@ -119,7 +121,9 @@ export default {
     })
   },
   created(){
-           let time=new ChangeDate(new Date(),"yyyy-MM-dd").init()
+           let delArr=new RemoveDuplication(this.arr)
+           console.log(delArr)
+           let time=new timestamp(new Date(),"yyyy-MM-dd").init()
            console.log(time)
            let newFun=new Curry().curry(this.getName)
           newFun(2,2,2)(2)
@@ -127,7 +131,25 @@ export default {
           newArr[0].newArr[2]="22"
           console.log(newArr)
           console.log(this.arr2)
-          
+          const programmerOutput = [
+  {
+    name: 'Uncle Bobby',
+    linesOfCode: 500
+  }, {
+    name: 'Suzie Q',
+    linesOfCode: 1500
+  }, {
+    name: 'Jimmy Gosling',
+    linesOfCode: 150
+  }, {
+    name: 'Gracie Hopper',
+    linesOfCode: 1000
+  }
+];
+          let totalOutput = programmerOutput
+  .map(output => output.linesOfCode)
+  .reduce((totalLines, lines) => totalLines + lines, 0)
+          console.log(totalOutput)
   },
   methods:{
       change(){
