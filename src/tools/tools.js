@@ -190,7 +190,7 @@ function delay(fn,gapTime){  //收集请求 只请求最后一次
      _lastTime = _nowTime
      setTimeout(()=>{
         let now=+new Date()
-        if(now-_lastTime==gapTime){
+        if(now-_lastTime>=gapTime){
            fn.apply(this, arguments)
         }
      },gapTime)
