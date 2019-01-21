@@ -126,7 +126,9 @@ export default {
            let time=new timestamp(new Date(),"yyyy-MM-dd").init()
            console.log(time)
            let newFun=new Curry().curry(this.getName)
-          newFun(2,2,2)(2)
+           let num=newFun(2)(3)
+           console.log(num)
+           
           let newArr=new deepClone(this.arr2)
           newArr[0].newArr[2]="22"
           console.log(newArr)
@@ -160,8 +162,8 @@ export default {
         }
           this.flag=!this.flag
       },
-      getName(a,b,c,d){
-        // console.log([a,b,c,d])
+      getName(a=0,b=0,c=0,d=0){
+        console.log([a,b,c,d])
         console.log(a+b+c+d)
       }
 

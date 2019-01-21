@@ -106,21 +106,30 @@ class timestamp{  //时间格式化
  class  Curry{   //柯里化函数
     
     curry(fn,args){
-     let len=fn.length;
+     
      let that=this;
      let arg=args?args:[];
-      return function(){
-        let _args=[...arg];
-        for(let i=0;i<arguments.length;i++){
-          let newArg=arguments[i] ;
-          _args.push(newArg)
-        }
-        if(_args.length<len){
-           return that.curry.call(that,fn,_args)
-        }else{     
-          return fn.apply(this,_args)
-        }
-      }
+     let newfn=function(){
+       let newArgs=arg.concat([].slice.call(arguments));
+       return that.curry.call(that,fn,newArgs)
+     }
+     
+     newfn.toString=function(){
+       return fn(...arg)
+     }
+     return newfn
+      // return function(){
+      //   let _args=[...arg];
+      //   for(let i=0;i<arguments.length;i++){
+      //     let newArg=arguments[i] ;
+      //     _args.push(newArg)
+      //   }
+      //   if(_args.length<len){
+      //      return that.curry.call(that,fn,_args)
+      //   }else{     
+      //     return fn.apply(this,_args)
+      //   }
+      // }
 
     }
  }
