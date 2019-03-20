@@ -1,3 +1,4 @@
+/* eslint-disable */
 'use strict'
 const chalk = require('chalk')
 const semver = require('semver')

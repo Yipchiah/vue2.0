@@ -1,4 +1,4 @@
-const Home={
+const Home = {
 	state:{
 	},
 	mutations:{
@@ -9,4 +9,4 @@ const Home={
 	}
 }
 
-export default Home;
+export default Home

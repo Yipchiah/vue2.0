@@ -4,29 +4,29 @@ import Home from './Home/Home.js'
 import Shop from './Shop/Shop.js'
 Vue.use(Vuex)
 const store = new Vuex.Store({
-	modules:{
-		Home:Home,
-		Shop:Shop
+	modules: {
+		Home: Home,
+		Shop: Shop
 	},
 	state: {
-       avatar:""
+		avatar: ''
 	},
 	getters: {
-		getAvatar:state=>{
+		getAvatar: state => {
 			return state.avatar
 		},
 	},
 	mutations: {
-    changeAvatar(state,avatar){
-      state.avatar = avatar;
-    },
+		changeAvatar(state, avatar) {
+			state.avatar = avatar
+		},
 	},
 	actions: {
-     commitAvatar({
- 			commit
- 		},avatar){
- 			commit('changeAvatar',avatar)
- 		},
+		commitAvatar({
+			commit
+		}, avatar) {
+			commit('changeAvatar', avatar)
+		},
 
 	}
 

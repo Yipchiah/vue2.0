@@ -1,4 +1,4 @@
-const Shop={
+const Shop = {
 	state:{
 	},
 	mutations:{
@@ -11,4 +11,4 @@ const Shop={
 
 }
 
-export default Shop;
+export default Shop
